@@ -7,13 +7,13 @@ export default function DayList(props) {
   return (
     <ul>
       {
-        days.map((d) => (
+        days.map((currDay) => (
             <DayListItem
-              key={d.id}
-              name={d.name}
-              spots={d.spots}
-              selected={d.name === day}
-              setDay={setDay}
+              key={currDay.id}
+              name={currDay.name}
+              spots={currDay.spots}
+              selected={currDay.name === day}
+              setDay={() => setDay(currDay.name)}
             />
         ))
       }
