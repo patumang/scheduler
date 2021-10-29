@@ -11,4 +11,16 @@ export function getAppointmentsForDay(state, day) {
 
   //... returns an array of appointments for that day
   return appointments;
-}
+};
+
+export function getInterview(state, interview) {
+  let parsedInterview = null;
+
+  if (interview) {
+    parsedInterview = {};
+    parsedInterview.student = interview.student;
+    parsedInterview.interviewer = state.interviewers[interview.interviewer];
+  }
+
+  return parsedInterview;
+};
