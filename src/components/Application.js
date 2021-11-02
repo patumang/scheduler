@@ -36,7 +36,17 @@ export default function Application(props) {
           ...state,
           appointments
         });
-      })
+      });
+  }
+
+  function cancelInterview(id) {
+    return axios.delete(`/api/appointments/${id}`)
+      .then(res => {
+        setState({
+          ...state,
+          appointments: {...state.appointments, interview:null}
+        });
+      });
   }
 
   useEffect(() => {
@@ -63,6 +73,7 @@ export default function Application(props) {
         interview={interview}
         interviewers={dailyInterviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });
@@ -91,7 +102,7 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         { schedule }
-        <Appointment key="last" time="5pm" bookInterview={bookInterview} />
+        <Appointment key="last" time="5pm" />
       </section>
     </main>
   );
