@@ -35,20 +35,28 @@ const useApplicationData = () => {
 
     return axios.put(`/api/appointments/${id}`, { interview })
       .then(res => {
-        setState({
-          ...state,
-          appointments
-        });
+        if(state.appointments[id].interview === null){
+          const days = state.days.map(day => (
+            day.appointments.includes(id)
+              ? { ...day, spots: day.spots - 1 }
+              : day
+          ));
+          setState(prev => ({ ...prev, days, appointments }));
+        } else {
+          setState(prev => ({ ...prev, appointments }));
+        }
       });
   }
 
   function cancelInterview(id) {
     return axios.delete(`/api/appointments/${id}`)
       .then(res => {
-        setState({
-          ...state,
-          appointments: { ...state.appointments, interview: null }
-        });
+        const days = state.days.map(day => (
+          day.appointments.includes(id)
+            ? { ...day, spots: day.spots + 1 }
+            : day
+        ));
+        setState(prev => ({ ...prev, days, appointments: { ...prev.appointments, interview: null } }));
       });
   }
 
