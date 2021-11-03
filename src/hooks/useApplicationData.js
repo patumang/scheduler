@@ -49,6 +49,15 @@ const useApplicationData = () => {
   }
 
   function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    
     return axios.delete(`/api/appointments/${id}`)
       .then(res => {
         const days = state.days.map(day => (
@@ -56,7 +65,7 @@ const useApplicationData = () => {
             ? { ...day, spots: day.spots + 1 }
             : day
         ));
-        setState(prev => ({ ...prev, days, appointments: { ...prev.appointments, interview: null } }));
+        setState(prev => ({ ...prev, days, appointments }));
       });
   }
 
