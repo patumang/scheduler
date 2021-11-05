@@ -25,6 +25,7 @@ export default function Application(props) {
   const appointments = getAppointmentsForDay(state, state.day).map(
     appointment => {
       return (
+        /* call Appointment component with interview and interviewers details */
         <Appointment
           key={appointment.id}
           {...appointment}
@@ -47,6 +48,7 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
+          {/* call DayList component with days state value */}
           <DayList
             days={state.days}
             value={state.day}
@@ -60,6 +62,7 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
+        {/* Show all Appointments for selected day */}
         { appointments }
         <Appointment key="last" time="5pm" />
       </section>

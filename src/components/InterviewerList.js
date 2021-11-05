@@ -4,13 +4,16 @@ import InterviewerListItem from "./InterviewerListItem";
 
 import "components/InterviewerList.scss";
 
+/* InterviewerList Component */
 function InterviewerList(props) {
+  /* destructure props object */
   const { interviewers, value, onChange } = props;
   return(
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewer</h4>
       <ul className="interviewers__list">
         {
+          /* map through interviewers to render each InterviewerListItem */
           interviewers.map((interv) => (
             <InterviewerListItem
               key={interv.id}
