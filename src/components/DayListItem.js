@@ -17,7 +17,7 @@ const formatSpots = (spots) => {
 /* DayListItem Component */
 export default function DayListItem(props) {
   /* desctrucure props */
-  const { name, spots, selected, setDay} = props;
+  //const { name, spots, selected, setDay} = props;
   
   /* dynamically add classnames to day using classNames */
   let dayClass = classNames('day-list__item', {
